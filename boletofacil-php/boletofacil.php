@@ -133,6 +133,7 @@ class BoletoFacil
             'responseType' => BoletoFacil::RESPONSE_TYPE,
             'beginDueDate' => $this->beginDueDate,
             'endDueDate' => $this->endDueDate,
+            'showCancelled'=>'on'
         );
 
         return $this->request("list-charges", $requestData);
