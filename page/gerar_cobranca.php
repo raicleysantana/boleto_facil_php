@@ -25,6 +25,7 @@ if ($request == 'POST') {
     $boletoFacil->amount = '12.00';
     $boletoFacil->payerName = $boleto->nome;
     $boletoFacil->reference = 1;
+    $boletoFacil->notificationUrl = 'http://pagamento.atwebpages.com/pagamento.php';
     $request = $boletoFacil->issueCharge();
     $data = json_decode($request);
     var_dump($data);

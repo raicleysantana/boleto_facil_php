@@ -10,7 +10,7 @@ $boleto = new Boleto();
 $boletoFacil = new BoletoFacil($boleto->token, $boleto->sandbox);
 
 $boletoFacil->beginDueDate = '18/01/2020';
-$boletoFacil->endDueDate = '26/01/2020';
+$boletoFacil->endDueDate = '26/02/2020';
 $response = $boletoFacil->listCharges();
 $response = json_decode($response);
 //var_dump($response->data->charges);
