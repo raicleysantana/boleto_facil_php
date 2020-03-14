@@ -27,6 +27,9 @@ if ($request == 'POST') {
     $boletoFacil->reference = 1;
     $boletoFacil->notificationUrl = 'http://pagamento.atwebpages.com/pagamento.php';
     $request = $boletoFacil->issueCharge();
-    $data = json_decode($request);
-    var_dump($data);
+    $resposta = json_decode($request);
+    var_dump($resposta);die;
+    foreach ($resposta->data->charges as $charge) {
+      //  echo $charge->checkoutUrl;
+    }
 }
