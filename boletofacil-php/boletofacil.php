@@ -15,8 +15,9 @@ namespace BoletoFacil;
 class BoletoFacil
 {
 
+    public $id;
     public $transferAmount;
-
+    public $hash;
     public $description;
     public $reference;
     public $amount;
@@ -47,6 +48,15 @@ class BoletoFacil
 
     public $beginDueDate;
     public $endDueDate;
+
+    public $paymentTypes;
+    public $creditCardHash;
+
+    public $creditCardNumber;
+    public $creditCardHolderName;
+    public $creditCardSecurityCode;
+    public $creditCardExpirationMonth;
+    public $creditCardExpirationYear;
 
     private $token;
     private $sandbox;
@@ -105,6 +115,89 @@ class BoletoFacil
         return $this->request("issue-charge", $requestData);
     }
 
+    public function issueCharge2()
+    {
+        $requestData = array(
+            'token' => $this->token,
+            'description' => $this->description,
+            'reference' => $this->reference,
+            'amount' => $this->amount,
+            'dueDate' => $this->dueDate,
+            'installments' => $this->installments,
+            'maxOverdueDays' => $this->maxOverdueDays,
+            'fine' => $this->fine,
+            'interest' => $this->interest,
+            'discountAmount' => $this->discountAmount,
+            'discountDays' => $this->discountDays,
+            'payerName' => $this->payerName,
+            'payerCpfCnpj' => $this->payerCpfCnpj,
+            'payerEmail' => $this->payerEmail,
+            'payerSecondaryEmail' => $this->payerSecondaryEmail,
+            'payerPhone' => $this->payerPhone,
+            'payerBirthDate' => $this->payerBirthDate,
+            'billingAddressStreet' => $this->billingAddressStreet,
+            'billingAddressNumber' => $this->billingAddressNumber,
+            'billingAddressComplement' => $this->billingAddressComplement,
+            'billingAddressCity' => $this->billingAddressCity,
+            'billingAddressState' => $this->billingAddressState,
+            'billingAddressPostcode' => $this->billingAddressPostcode,
+            'notifyPayer' => $this->notifyPayer,
+            'notificationUrl' => $this->notificationUrl,
+            'paymentTypes' => 'CREDIT_CARD',
+            'respon seType' => BoletoFacil::RESPONSE_TYPE,
+            'creditCardHash' => $this->creditCardHash,
+            'creditCardStore' => true,
+
+
+        );
+
+        return $this->request("issue-charge", $requestData);
+    }
+
+    public function issueCharge3()
+    {
+        $requestData = array(
+            'token' => $this->token,
+            'description' => $this->description,
+            'reference' => $this->reference,
+            'amount' => $this->amount,
+            'dueDate' => $this->dueDate,
+            'installments' => $this->installments,
+            'maxOverdueDays' => $this->maxOverdueDays,
+            'fine' => $this->fine,
+            'interest' => $this->interest,
+            'discountAmount' => $this->discountAmount,
+            'discountDays' => $this->discountDays,
+            'payerName' => $this->payerName,
+            'payerCpfCnpj' => $this->payerCpfCnpj,
+            'payerEmail' => $this->payerEmail,
+            'payerSecondaryEmail' => $this->payerSecondaryEmail,
+            'payerPhone' => $this->payerPhone,
+            'payerBirthDate' => $this->payerBirthDate,
+            'billingAddressStreet' => $this->billingAddressStreet,
+            'billingAddressNumber' => $this->billingAddressNumber,
+            'billingAddressComplement' => $this->billingAddressComplement,
+            'billingAddressCity' => $this->billingAddressCity,
+            'billingAddressState' => $this->billingAddressState,
+            'billingAddressPostcode' => $this->billingAddressPostcode,
+            'notifyPayer' => $this->notifyPayer,
+            'notificationUrl' => $this->notificationUrl,
+            'paymentTypes' => 'CREDIT_CARD',
+            'responseType' => BoletoFacil::RESPONSE_TYPE,
+
+          /*  'creditCardNumber' => $this->creditCardNumber,
+            'creditCardHolderName' => $this->creditCardHolderName,
+            'creditCardSecurityCode' => $this->creditCardSecurityCode,
+            'creditCardExpirationMonth' => $this->creditCardExpirationMonth,
+            'creditCardExpirationYear' => $this->creditCardExpirationYear,*/
+
+
+        );
+
+        return $this->request("issue-charge", $requestData);
+    }
+
+
     public function fetchPaymentDetails($paymentToken)
     {
         $requestData = array(
@@ -133,7 +226,7 @@ class BoletoFacil
             'responseType' => BoletoFacil::RESPONSE_TYPE,
             'beginDueDate' => $this->beginDueDate,
             'endDueDate' => $this->endDueDate,
-            'showCancelled'=>'on'
+            'showCancelled' => 'on'
         );
 
         return $this->request("list-charges", $requestData);
@@ -181,6 +274,29 @@ class BoletoFacil
         $response = curl_exec($curl);
         curl_close($curl);
         return $response;
+    }
+
+    public function refundCreditCardPayment()
+    {
+
+        $requestData = array(
+            'token' => $this->token,
+            'id' => $this->id,
+            'amount' => $this->amount,
+        );
+
+        return $this->request('refund-credit-card-payment', $requestData);
+    }
+
+    public function cardTokenization()
+    {
+
+        $requestData = array(
+            'token' => $this->token,
+            'creditCardHash' => $this->creditCardHash,
+        );
+
+        return $this->request('card-tokenization', $requestData);
     }
 
 }
