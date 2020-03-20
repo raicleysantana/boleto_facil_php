@@ -10,7 +10,7 @@ $boleto = new Boleto();
 $boletoFacil = new BoletoFacil($boleto->token,true);
 
 
-$boletoFacil->creditCardHash = '3d0f1186-95f9-4006-912a-4d0f61593c54';
+$boletoFacil->creditCardHash = '71ccbdec-7589-4ca8-a92d-c8793515c485';
 $data = $boletoFacil->cardTokenization();
 
-var_dump($boletoFacil->cardTokenization());
+var_dump($data);

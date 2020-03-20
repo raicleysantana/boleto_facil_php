@@ -20,13 +20,13 @@ $boletoFacil = new BoletoFacil($boleto->token, $boleto->sandbox);
 $request = $_SERVER['REQUEST_METHOD'];
 
 if ($request == 'POST') {
-    $boletoFacil->payerCpfCnpj = '89231736060';
-    $boletoFacil->description = 'Primeira venda com cartao de credito';
-    $boletoFacil->amount = '10.00';
-    $boletoFacil->payerName = $boleto->nome;
+    $boletoFacil->payerCpfCnpj = '03782105214';
+    $boletoFacil->description = '320923092 venda com cartao de credito';
+    $boletoFacil->amount = '11.00';
+    $boletoFacil->payerName = 'Testando 32453';
     $boletoFacil->reference = 1;
 
-    //$boletoFacil->creditCardHash = '466c6244-1147-4e4f-9bdf-01ecc78bae07';
+
     $boletoFacil->payerEmail = 'raicleysantana1@gmail.com';
     $boletoFacil->billingAddressCity = 'Manaus';
     $boletoFacil->billingAddressPostcode = '69084623';
@@ -36,13 +36,8 @@ if ($request == 'POST') {
     $boletoFacil->billingAddressStreet = 'rua padre ramin';
     $boletoFacil->billingAddressNumber = '136';
     $boletoFacil->billingAddressComplement = 'Drogaria Anne';
-
-    $boletoFacil->creditCardNumber = '5449135507339978';
-    $boletoFacil->creditCardSecurityCode = '673';
-    $boletoFacil->creditCardHolderName = 'TESTE';
-    $boletoFacil->creditCardExpirationMonth = '01';
-    $boletoFacil->creditCardExpirationYear = '2022';
-
+    $boletoFacil->creditCardStore = true;
+    $boletoFacil->creditCardHash = '4db25709-0a1c-4fee-87ec-0f97bf1b09f0';
     $request = $boletoFacil->issueCharge2();
     $resposta = json_decode($request);
     var_dump($resposta);

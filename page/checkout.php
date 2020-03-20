@@ -16,12 +16,13 @@ require '../models/Boleto.php';
     <script type="text/javascript">
         var checkout = new DirectCheckout('6DCF10A7CB9DE9E49A468FFBB4F087786F28F13404D63AF3A48FF9EF428A2BEC',false); /* Em sandbox utilizar o construtor new DirectCheckout('SEU TOKEN PUBLICO', false); */
 
-        console.log(checkout);
+        var hash;
+
         var cardData = {
-            cardNumber: '4210904764439437',
+            cardNumber: '5239585639721390',
             holderName: 'Nome do Titular do Cartão',
-            securityCode: '962',
-            expirationMonth: '10',
+            securityCode: '374',
+            expirationMonth: '05',
             expirationYear: '2021'
         };
 
@@ -46,18 +47,18 @@ require '../models/Boleto.php';
 
         checkout.getCardHash(cardData, function (cardHash) {
             /* Sucesso - A variável cardHash conterá o hash do cartão de crédito */
-            console.log("sucesso: " + cardHash);
+            document.getElementById('hash').innerText = cardHash;
+
         }, function (error) {
             console.log(error);
             /* Erro - A variável error conterá o erro ocorrido ao obter o hash */
         });
 
-
     </script>
 </head>
 <body>
-<?php
-?>
+<h2>Hash</h2>
+<div id="hash"></div>
 
 </body>
 </html>
